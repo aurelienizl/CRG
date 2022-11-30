@@ -1,7 +1,6 @@
-from openpyxl import *
 from datetime import date
 
-from openpyxl.chart import PieChart, Reference, BarChart3D, BarChart
+from openpyxl import *
 
 today = date.today()
 file_name = today.strftime("%b-%d-%Y")
@@ -158,13 +157,13 @@ def init_graph():
             else:
                 workstation_agency[5] += 1
 
-    graph_sheet.append(["NOMBRE DE POSTES : " + str(total), total])
+    graph_sheet.append(["NOMBRE DE POSTES : " + str(total), total - default])
     graph_sheet.append(["NOMBRE DE POSTES EN ECHEC : " + str(default), default])
 
-    graph_sheet.append(["NOMBRE DE POSTES : " + str(total), total])
+    graph_sheet.append(["NOMBRE DE POSTES : " + str(total), total - workstation])
     graph_sheet.append(["NOMBRE DE POSTES BUREAUTIQUE EN ECHEC : " + str(workstation), workstation])
 
-    graph_sheet.append(["NOMBRE DE POSTES : " + str(total), total])
+    graph_sheet.append(["NOMBRE DE POSTES : " + str(total), total - critique])
     graph_sheet.append(["NOMBRE DE POSTES CRTITQUE EN ECHEC : " + str(critique), critique])
 
     graph_sheet.append(["NOMBRE DE POSTES BUREAUTIQUE EN ECHEC : " + str(workstation), workstation])
