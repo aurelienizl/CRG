@@ -1,4 +1,11 @@
 from parser import *
+from openpyxl.chart import (
+    PieChart,
+    BarChart,
+    Reference
+)
+
+
 
 def write_graph():
     rapport = load_workbook("../conformity-report/" + file_name + ".xlsx")
@@ -13,7 +20,7 @@ def write_graph():
     pie.set_categories(labels)
 
     if all_sheet['B1'].value != 0:
-        title = int((100 * all_sheet['B2'].value) / all_sheet['B1'].value)
+        title = int((100 * all_sheet['B2'].value) / (all_sheet['B1'].value + all_sheet['B2'].value) )
         pie.title = str(title) + " % DE POSTES NON CONFORMES"
     all_sheet.add_chart(pie, "E1")
 
@@ -25,7 +32,7 @@ def write_graph():
     pie.add_data(data)
     pie.set_categories(labels)
     num = all_sheet['B4'].value
-    title = int((100 * all_sheet['B4'].value) / all_sheet['B3'].value)
+    title = 100 - int((100 *  + all_sheet['B3'].value) / (all_sheet['B3'].value + all_sheet['B4'].value))
     pie.title = str(num) + " (" + str(title) + "%)" + " POSTES BUREAUTIQUES NON CONFORMES"
 
     all_sheet.add_chart(pie, "E16")
@@ -38,7 +45,7 @@ def write_graph():
     pie.add_data(data)
     pie.set_categories(labels)
     title = all_sheet['B6'].value
-    num = int((100 * all_sheet['B6'].value) / all_sheet['B5'].value)
+    num = 100 - int((100 * all_sheet['B5'].value )/ (all_sheet['B5'].value + all_sheet['B4'].value))
     pie.title = str(title) + " (" + str(num) + "%)" + " POSTES CRITIQUES NON CONFORMES"
     all_sheet.add_chart(pie, "E31")
 

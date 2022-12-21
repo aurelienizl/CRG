@@ -33,6 +33,9 @@ def init_graph():
     wsusc = 0
     ouc = 0
 
+    total_critique = 0
+    total_workstation = 0
+
     critique = 0
     workstation = 0
 
@@ -45,6 +48,13 @@ def init_graph():
     default_agency = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     critique_agency = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     workstation_agency = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+
+    for el in all_sheet:
+        if el[0].value != 'NAME':
+            if el[8].value == "CRITIQUE":
+                total_critique += 1
+            elif el[8].value == "BUREAUTIQUE":
+                total_workstation += 1
 
     for el in all_sheet:
         total += 1
@@ -160,14 +170,14 @@ def init_graph():
     graph_sheet.append(["NOMBRE DE POSTES : " + str(total), total - default])
     graph_sheet.append(["NOMBRE DE POSTES EN ECHEC : " + str(default), default])
 
-    graph_sheet.append(["NOMBRE DE POSTES : " + str(total), total - workstation])
+    graph_sheet.append(["NOMBRE DE POSTES BUREAUTIQUE : " + str(total_workstation), total_workstation])
     graph_sheet.append(["NOMBRE DE POSTES BUREAUTIQUE EN ECHEC : " + str(workstation), workstation])
 
-    graph_sheet.append(["NOMBRE DE POSTES : " + str(total), total - critique])
-    graph_sheet.append(["NOMBRE DE POSTES CRTITQUE EN ECHEC : " + str(critique), critique])
+    graph_sheet.append(["NOMBRE DE POSTES CRITIQUES: " + str(total_critique), total_critique])
+    graph_sheet.append(["NOMBRE DE POSTES CRITIQUES EN ECHEC : " + str(critique), critique])
 
     graph_sheet.append(["NOMBRE DE POSTES BUREAUTIQUE EN ECHEC : " + str(workstation), workstation])
-    graph_sheet.append(["NOMBRE DE POSTES CRTITQUE EN ECHEC : " + str(critique), critique])
+    graph_sheet.append(["NOMBRE DE POSTES CRITIQUES EN ECHEC : " + str(critique), critique])
 
     graph_sheet.append(["TYPE", "POSTES ISOLES"])
 
